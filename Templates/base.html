@@ -1,0 +1,44 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Vegetable Menu{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <div class="user">
+
+        {% if request.user.is_authenticated %}
+
+            <span class="username">
+                👤 {{ request.user.username }}
+            </span>
+
+            <form action="{% url 'logouturls' %}" method="POST">
+                {% csrf_token %}
+
+                <button type="submit" class="logout-btn">
+                    Logout ↪
+                </button>
+            </form>
+
+        {% endif %}
+
+    </div>
+
+    {% block main %}
+    {% endblock %}
+
+</body>
+</html>

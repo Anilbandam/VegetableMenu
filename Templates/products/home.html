@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+ {% block css %}
+   
+{% load static %}
+
+    <title>Vegetable Menu | Fresh & Healthy</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+ {% endblock %}
+{% block main %}
+<body>
+
+    <!-- Top Header -->
+    <div class="top-header">
+        <div>🌿 Fresh & Healthy | Farm to Home</div>
+        <div>🚚 Free Delivery Above ₹499 &nbsp; | &nbsp; ☎ 24/7 Support</div>
+    </div>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <span>🥬</span>
+            <div>
+                <h1>Vegetable <span>Menu</span></h1>
+                <small>Eat Fresh... Live Healthy...</small>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="{% url 'homeurls' %}">Home</a>
+            <a href="#vegetables">Vegetables</a>
+            <a href="{% url 'displaycarturls' %}">
+                My Cart 🛒
+            </a>
+            <a href="{% url 'ordersurls' %}">Orders</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </div>
+
+
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'homeurls' %}">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search vegetables..."
+                value="{{ search }}"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+
+        <!-- User Section -->
+
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="tag">100% FRESH & NATURAL</p>
+
+            <h2>
+                Fresh Vegetables
+                <span>Direct from Farm</span>
+            </h2>
+
+            <p class="hero-description">
+                Healthy Food &nbsp; • &nbsp; Better Life
+            </p>
+
+            <a href="#vegetables" class="shop-btn">
+                Shop Now →
+            </a>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1540420773420-3366772f4999"
+                alt="Fresh vegetables"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+
+        <div>🌿 <span>100% Fresh & Natural</span></div>
+        <div>🚚 <span>Fast Delivery</span></div>
+        <div>🛡️ <span>Secure Payments</span></div>
+        <div>🎧 <span>24/7 Customer Support</span></div>
+
+    </section>
+
+
+    <!-- Products Section -->
+    <section class="products-section" id="vegetables">
+
+        <h2 class="section-title">
+            🌿 Our Fresh Vegetables 🌿
+        </h2>
+
+
+        <!-- Search Result Heading -->
+        {% if search %}
+
+            <h3 class="search-result">
+                Search Results for "{{ search }}"
+            </h3>
+
+        {% endif %}
+
+
+        <div class="products-container" id="product-container">
+
+            {% if product %}
+
+                {% for i in product %}
+
+                    <div class="product-card">
+
+                        <!-- Product Image -->
+                        <div class="product-image">
+
+                            {% if i.picture %}
+
+                                <img
+                                    src="{{ i.picture.url }}"
+                                    alt="{{ i.prdname }}"
+                                >
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Product Details -->
+                        <h3>{{ i.prdname }}</h3>
+
+                        <p class="price">
+                            ₹{{ i.price }}
+                        </p>
+
+
+                        <!-- Add To Cart -->
+                        <form
+                            action="{% url 'carturls' i.prdno %}"
+                            method="POST"
+                        >
+
+                            {% csrf_token %}
+
+                            <button id="addcart" type="submit">
+                                Add to Cart
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <!-- No Products Found -->
+                <div class="not-found">
+
+                    <h2>🥬 Vegetable Not Found!</h2>
+
+                    {% if search %}
+
+                        <p>
+                            Sorry, "{{ search }}" is not available.
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            No vegetables available currently!
+                        </p>
+
+                    {% endif %}
+
+                    <a href="{% url 'homeurls' %}" class="shop-btn">
+                        View All Vegetables →
+                    </a>
+
+                </div>
+
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- Bottom Banner -->
+    <section class="bottom-banner">
+
+        <h2>
+            🌿 Choose Fresh • Choose Healthy • Choose Vegetable Menu
+        </h2>
+
+        <a href="#vegetables">
+            Start Shopping →
+        </a>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h2>🥬 Vegetable Menu</h2>
+
+        <p>Fresh Vegetables Delivered to Your Doorstep.</p>
+
+        <p>© 2026 Vegetable Menu. All Rights Reserved.</p>
+
+    </footer>
+
+
+    <script src="{% static 'js/home.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

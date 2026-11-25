@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+ {% block css %}
+   
+{% load static %}
+
+    <title>Vegetable Menu | Fresh & Healthy</title>
+
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+ {% endblock %}
+{% block main %}
+
+<body>
+
+<nav class="navbar">
+    <h2>🥬 Vegetable <span>Menu</span></h2>
+
+    <div class="nav-links">
+        <a href="{% url 'homeurls' %}">Home</a>
+        <a href="{% url 'displaycarturls' %}">My Cart 🛒</a>
+        <a href="{% url 'ordersurls' %}">My Orders</a>
+    </div>
+</nav>
+
+
+<section class="page-section">
+
+    <h1>My Orders 📦</h1>
+
+    <p class="subtitle">
+        Check your previous orders and their status.
+    </p>
+
+    {% if orders %}
+
+        {% for order in orders %}
+
+        <div class="order-card">
+
+            <div class="order-heading">
+
+                <h2>Order #{{ order.orderid }}</h2>
+
+                <span class="status">
+                    {{ order.status }}
+                </span>
+
+            </div>
+
+            <p>
+                <strong>Order Date:</strong>
+                {{ order.create_at|date:"d M Y, h:i A" }}
+            </p>
+
+            <h3>Products</h3>
+
+            {% for item in order.order_items.all %}
+
+            <div class="checkout-item">
+
+                <div>
+                    <h3>{{ item.product_name }}</h3>
+                    <p>Quantity: {{ item.quantity }}</p>
+                </div>
+
+                <strong>
+                    ₹{{ item.subtotal|floatformat:2 }}
+                </strong>
+
+            </div>
+
+            {% endfor %}
+
+            <div class="total-row">
+                <span>Total Amount</span>
+
+                <strong>
+                    ₹{{ order.total_amount|floatformat:2 }}
+                </strong>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty-orders">
+            <h2>No Orders Found!</h2>
+
+            <p>You haven't placed any orders yet.</p>
+
+            <a href="{% url 'homeurls' %}" class="confirm-btn">
+                Start Shopping →
+            </a>
+        </div>
+
+    {% endif %}
+
+</section>
+
+
+<footer>
+    <h3>🥬 Vegetable Menu</h3>
+    <p>Eat Fresh... Live Healthy...</p>
+    <p>© 2026 Vegetable Menu. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,371 @@
+
+/* =================================
+   CHECKOUT PAGE
+================================= */
+
+/* Checkout Navigation */
+
+.checkout-navbar {
+    width: 100%;
+    background: #ffffff;
+    padding: 18px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+    gap: 15px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.checkout-navbar h2 {
+    font-size: 27px;
+    color: #218838;
+    margin: 0;
+}
+
+.checkout-navbar h2 span {
+    color: #333;
+}
+
+.checkout-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.checkout-nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.checkout-nav-links a:hover {
+    color: #218838;
+}
+
+
+/* =================================
+   MAIN SECTION
+================================= */
+
+.checkout-page {
+    width: 100%;
+    min-height: 75vh;
+
+    background: #f4faf4;
+
+    padding: 45px 20px 60px;
+}
+
+.checkout-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.checkout-heading h1 {
+    font-size: 36px;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.checkout-heading p {
+    color: #777;
+    font-size: 16px;
+}
+
+
+/* =================================
+   CHECKOUT CONTAINER
+================================= */
+
+.checkout-container {
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+}
+
+.checkout-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    padding: 30px;
+    margin-bottom: 25px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.checkout-card h2 {
+    font-size: 23px;
+    color: #218838;
+
+    margin: 0 0 22px;
+
+    padding-bottom: 14px;
+
+    border-bottom: 2px solid #e8f1e8;
+}
+
+
+/* =================================
+   CUSTOMER DETAILS
+================================= */
+
+.customer-details {
+    background: #f0faf1;
+
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.customer-details p {
+    color: #444;
+    font-size: 16px;
+
+    margin: 12px 0;
+}
+
+.customer-details strong {
+    color: #218838;
+}
+
+
+/* =================================
+   ORDER ITEMS
+================================= */
+
+.checkout-item {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px 10px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.item-info h3 {
+    color: #333;
+    font-size: 19px;
+
+    margin: 0 0 10px;
+}
+
+.item-info p {
+    color: #777;
+    font-size: 15px;
+
+    margin: 7px 0;
+}
+
+.item-price {
+    color: #218838;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.empty-cart {
+    color: #777;
+    padding: 15px 0;
+}
+
+
+/* =================================
+   GRAND TOTAL
+================================= */
+
+.total-row {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    background: #eaf7eb;
+
+    padding: 22px;
+    margin-top: 25px;
+
+    border-radius: 10px;
+
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.total-row strong {
+    color: #218838;
+    font-size: 23px;
+}
+
+
+/* =================================
+   CONFIRM ORDER BUTTON
+================================= */
+
+.checkout-card form {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.confirm-btn {
+    width: 100%;
+
+    padding: 16px;
+
+    background: #218838;
+    color: white;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.confirm-btn:hover {
+    background: #176b2c;
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(33,136,56,0.2);
+}
+
+
+/* =================================
+   BACK TO CART
+================================= */
+
+.back-btn {
+    display: inline-block;
+
+    margin-top: 22px;
+
+    color: #218838;
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    color: #145c26;
+    text-decoration: underline;
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+.checkout-footer {
+    width: 100%;
+
+    background: #176d30;
+    color: white;
+
+    text-align: center;
+
+    padding: 30px 15px;
+}
+
+.checkout-footer h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.checkout-footer p {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 768px) {
+
+    .checkout-navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .checkout-nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .checkout-heading h1 {
+        font-size: 29px;
+    }
+
+    .checkout-card {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .checkout-page {
+        padding: 25px 12px;
+    }
+
+    .checkout-navbar h2 {
+        font-size: 23px;
+    }
+
+    .checkout-nav-links {
+        gap: 12px;
+    }
+
+    .checkout-nav-links a {
+        font-size: 14px;
+    }
+
+    .checkout-heading h1 {
+        font-size: 26px;
+    }
+
+    .checkout-item {
+        gap: 10px;
+    }
+
+    .item-info h3 {
+        font-size: 16px;
+    }
+
+    .item-price {
+        font-size: 16px;
+    }
+
+    .total-row {
+        padding: 16px;
+        font-size: 17px;
+    }
+
+    .total-row strong {
+        font-size: 19px;
+    }
+
+}

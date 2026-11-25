@@ -1,0 +1,92 @@
+
+/* Global Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7fff7;
+    color: #222;
+}
+
+/* User Header */
+
+.user {
+    width: 100%;
+    min-height: 72px;
+    background: #218838;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 20px;
+    padding: 12px 5%;
+}
+
+/* Username */
+
+.username {
+    background: rgba(255,255,255,0.15);
+    color: white;
+
+    padding: 14px 22px;
+    border-radius: 10px;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* Logout Form */
+
+.user form {
+    margin: 0;
+}
+
+/* Logout Button */
+
+.logout-btn {
+    background: white;
+    color: #218838;
+
+    border: none;
+    padding: 15px 28px;
+
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #e8f5e9;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+
+@media (max-width: 500px) {
+
+    .user {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .username {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .logout-btn {
+        padding: 10px 15px;
+    }
+
+}

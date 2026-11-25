@@ -1,0 +1,156 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Checkout | Vegetable Menu
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+
+{% block main %}
+
+<!-- Checkout Navigation -->
+<nav class="checkout-navbar">
+
+    <h2>🥬 Vegetable <span>Menu</span></h2>
+
+    <div class="checkout-nav-links">
+        <a href="{% url 'homeurls' %}">Home</a>
+        <a href="{% url 'displaycarturls' %}">My Cart 🛒</a>
+        <a href="{% url 'ordersurls' %}">My Orders</a>
+    </div>
+
+</nav>
+
+
+<!-- Checkout Main Section -->
+<main class="checkout-page">
+
+    <div class="checkout-heading">
+        <h1>Checkout 🛍️</h1>
+        <p>Review your order before confirming.</p>
+    </div>
+
+
+    <div class="checkout-container">
+
+        <!-- Customer Details -->
+        <div class="checkout-card">
+
+            <h2>👤 Customer Details</h2>
+
+            <div class="customer-details">
+
+                <p>
+                    <strong>Username:</strong>
+                    {{ request.user.username }}
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ request.user.email|default:"Not provided" }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Order Details -->
+        <div class="checkout-card">
+
+            <h2>🛒 Order Items</h2>
+
+            {% for item in items %}
+
+            <div class="checkout-item">
+
+                <div class="item-info">
+
+                    <h3>{{ item.product.prdname }}</h3>
+
+                    <p>
+                        Price:
+                        ₹{{ item.product.price|floatformat:2 }}
+                    </p>
+
+                    <p>
+                        Quantity: {{ item.quantity }}
+                    </p>
+
+                </div>
+
+                <div class="item-price">
+                    ₹{{ item.subtotal|floatformat:2 }}
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="empty-cart">
+                Your cart is empty.
+            </p>
+
+            {% endfor %}
+
+
+            <!-- Grand Total -->
+            <div class="total-row">
+
+                <span>Grand Total</span>
+
+                <strong>
+                    ₹{{ total|floatformat:2 }}
+                </strong>
+
+            </div>
+
+
+            <!-- Confirm Order -->
+            {% if items %}
+
+            <form method="POST"
+                  action="{% url 'confirmorderurls' %}">
+
+                {% csrf_token %}
+
+                <button type="submit" class="confirm-btn">
+                    Confirm Order ✓
+                </button>
+
+            </form>
+
+            {% endif %}
+
+
+            <!-- Back to Cart -->
+            <a href="{% url 'displaycarturls' %}"
+               class="back-btn">
+
+                ← Back to Cart
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Footer -->
+<footer class="checkout-footer">
+
+    <h3>🥬 Vegetable Menu</h3>
+
+    <p>Eat Fresh... Live Healthy...</p>
+
+    <p>© 2026 Vegetable Menu. All Rights Reserved.</p>
+
+</footer>
+
+{% endblock %}

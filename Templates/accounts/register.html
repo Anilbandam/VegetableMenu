@@ -1,0 +1,133 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Vegetable Menu</title>
+
+    <link rel="stylesheet" href="{% static 'css/register1.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="register-container">
+
+        <!-- Registration Card -->
+        <div class="register-card">
+
+            <!-- Logo -->
+            <div class="logo">
+
+                <h1>🥬 Vegetable <span>Menu</span></h1>
+
+                <p>Eat Fresh... Live Healthy...</p>
+
+            </div>
+
+
+            <!-- Heading -->
+            <div class="heading">
+
+                <h2>Create Account</h2>
+
+                <p>Join us and enjoy fresh vegetables!</p>
+
+            </div>
+
+
+            <!-- Django Messages -->
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <!-- Registration Form -->
+            <form action="" method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- Django Form Fields -->
+                {% for i in emptyform %}
+
+                    <div class="input-group">
+
+                        <label>
+                            {{ i.label }}
+                        </label>
+
+                        {{ i }}
+
+                        {% if i.help_text %}
+                            <small>{{ i.help_text }}</small>
+                        {% endif %}
+
+                        {% for error in i.errors %}
+                            <p class="field-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+                {% endfor %}
+
+
+                <!-- Register Button -->
+                <button type="submit" class="register-btn">
+
+                    Create Account →
+
+                </button>
+
+            </form>
+
+
+            <!-- Login Link -->
+            <div class="login-section">
+
+                <p>Already have an account?</p>
+
+                <a href="{% url 'loginurls' %}" class="login-btn">
+
+                    Login Here →
+
+                </a>
+
+            </div>
+
+
+            <!-- Home -->
+            <div class="footer">
+
+                <a href="{% url 'homeurls' %}">
+                    ← Back to Home
+                </a>
+
+                <p>🌿 Fresh Vegetables | Healthy Life</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

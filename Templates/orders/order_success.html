@@ -1,0 +1,117 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Successful | Vegetable Menu</title>
+
+    <link rel="stylesheet" href="{% static 'css/orders.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>🥬 Vegetable <span>Menu</span></h2>
+
+    <div class="nav-links">
+        <a href="{% url 'homeurls' %}">Home</a>
+        <a href="{% url 'ordersurls' %}">My Orders</a>
+    </div>
+</nav>
+
+
+<section class="page-section">
+
+    <div class="success-card">
+
+        <div class="success-icon">✓</div>
+
+        <h1>Order Placed Successfully!</h1>
+
+        <p class="subtitle">
+            Thank you for shopping with Vegetable Menu.
+        </p>
+
+        <div class="order-id">
+            Order ID: #{{ order.orderid }}
+        </div>
+
+        <div class="order-info">
+
+            <p>
+                <strong>Customer:</strong>
+                {{ order.user.username }}
+            </p>
+
+            <p>
+                <strong>Order Date:</strong>
+                {{ order.create_at|date:"d M Y, h:i A" }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span class="status">
+                    {{ order.status }}
+                </span>
+            </p>
+
+        </div>
+
+        <h2>Order Summary</h2>
+
+        {% for item in items %}
+
+        <div class="checkout-item">
+
+            <div>
+                <h3>{{ item.product_name }}</h3>
+
+                <p>Price: ₹{{ item.price|floatformat:2 }}</p>
+
+                <p>Quantity: {{ item.quantity }}</p>
+            </div>
+
+            <strong>
+                ₹{{ item.subtotal|floatformat:2 }}
+            </strong>
+
+        </div>
+
+        {% endfor %}
+
+        <div class="total-row">
+            <span>Grand Total</span>
+            <strong>
+                ₹{{ order.total_amount|floatformat:2 }}
+            </strong>
+        </div>
+
+        <div class="action-buttons">
+
+            <a href="{% url 'ordersurls' %}" class="confirm-btn">
+                View My Orders
+            </a>
+
+            <a href="{% url 'homeurls' %}" class="back-btn">
+                Continue Shopping
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    <h3>🥬 Vegetable Menu</h3>
+    <p>Eat Fresh... Live Healthy...</p>
+    <p>© 2026 Vegetable Menu. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

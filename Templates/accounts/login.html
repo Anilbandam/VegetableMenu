@@ -1,0 +1,194 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Vegetable Menu</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <!-- Header -->
+            <div class="logo">
+                <h1>🥬 Vegetable <span>Menu</span></h1>
+                <p>Eat Fresh... Live Healthy...</p>
+            </div>
+
+            <div class="heading">
+                <h2>Welcome Back!</h2>
+                <p>Login to continue your shopping</p>
+            </div>
+
+
+            <!-- Django Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+            <!-- Login Form -->
+            <form action="" method="POST">
+
+                {% csrf_token %}
+
+                <!-- Username -->
+                <div class="input-box">
+
+                    <label for="user">Username</label>
+
+                    <input
+                        type="text"
+                        name="user"
+                        id="user"
+                        placeholder="Enter your username"
+                        required
+                        autocomplete="username"
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="input-box">
+
+                    <label for="password">Password</label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                        >
+
+                        <span id="togglePassword">Show</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Login Button -->
+                <button type="submit" class="login-btn">
+                    Login <span>→</span>
+                </button>
+
+            </form>
+
+
+            <!-- Register Section -->
+            <div class="register-section">
+
+                <p id="para">
+                    Don't have an account?
+                    <span>Click Here</span>
+                </p>
+
+                <a href="{% url 'registerurls' %}"
+                   id="button"
+                   class="register-btn">
+
+                    Create New Account →
+
+                </a>
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="footer">
+
+                <a href="{% url 'homeurls' %}">
+                    ← Back to Home
+                </a>
+
+                <p>🌿 Fresh Vegetables | Healthy Life</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Show Register Button
+        const para = document.querySelector("#para");
+        const button = document.querySelector("#button");
+
+        para.addEventListener("click", function () {
+
+            button.classList.toggle("show");
+
+            if (button.classList.contains("show")) {
+                para.querySelector("span").innerText = "Hide";
+            }
+            else {
+                para.querySelector("span").innerText = "Click Here";
+            }
+
+        });
+
+
+        // Show / Hide Password
+        const password = document.querySelector("#password");
+        const toggle = document.querySelector("#togglePassword");
+
+        toggle.addEventListener("click", function () {
+
+            if (password.type === "password") {
+
+                password.type = "text";
+                toggle.innerText = "Hide";
+
+            }
+            else {
+
+                password.type = "password";
+                toggle.innerText = "Show";
+
+            }
+
+        });
+
+
+        // Input Focus Effect
+        const inputs = document.querySelectorAll(".input-box input");
+
+        inputs.forEach(function (input) {
+
+            input.addEventListener("focus", function () {
+                input.parentElement.classList.add("active");
+            });
+
+            input.addEventListener("blur", function () {
+                input.parentElement.classList.remove("active");
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

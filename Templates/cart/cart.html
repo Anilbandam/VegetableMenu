@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+ {% block css %}
+   
+{% load static %}
+
+    <title>Vegetable Menu | Fresh & Healthy</title>
+
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+ {% endblock %}
+{% block main %}
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <h2>🥬 Vegetable <span>Menu</span></h2>
+
+        <div class="nav-links">
+            <a href="{% url 'homeurls' %}">Home</a>
+            <a href="{% url 'displaycarturls' %}">My Cart 🛒</a>
+            <a href="{% url 'ordersurls' %}">Orders</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+
+        <h1>My Shopping Cart 🛒</h1>
+
+        <p class="subtitle">
+            Fresh vegetables are waiting for you!
+        </p>
+
+
+        {% if items %}
+
+        <!-- Cart Container -->
+        <div class="cart-container">
+
+            <!-- Cart Products -->
+            <div class="cart-products">
+
+                {% for item in items %}
+
+                <div class="cart-card">
+
+                    <!-- Product Image -->
+                    <div class="product-image">
+
+                        {% if item.product.picture %}
+
+                        <img src="{{ item.product.picture.url }}"
+                             alt="{{ item.product.prdname }}">
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Product Details -->
+                    <div class="product-details">
+
+                        <h3>{{ item.product.prdname }}</h3>
+
+
+                        <!-- Price Per Item -->
+                        <p class="price">
+                            Price per item:
+                            ₹{{ item.product.price|floatformat:2 }}
+                        </p>
+
+
+                        <!-- Quantity Controls -->
+                        <div class="quantity-control">
+
+                            <form action="{% url 'decreaseurls' item.pk %}"
+                                  method="POST">
+
+                                {% csrf_token %}
+
+                                <button type="submit" class="qty-btn">
+                                    −
+                                </button>
+
+                            </form>
+
+
+                            <span class="quantity">
+                                {{ item.quantity }}
+                            </span>
+
+
+                            <form action="{% url 'increaseurls' item.pk %}"
+                                  method="POST">
+
+                                {% csrf_token %}
+
+                                <button type="submit" class="qty-btn">
+                                    +
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+                        <!-- Individual Subtotal -->
+                        <p class="subtotal">
+                            Subtotal:
+                            <strong>
+                                ₹{{ item.subtotal|floatformat:2 }}
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- Order Summary -->
+            <div class="cart-summary">
+
+                <h2>Order Summary</h2>
+
+
+                <!-- Total Products -->
+                <div class="summary-row">
+
+                    <span>Total Products</span>
+
+                    <span>
+                        {{ items|length }}
+                    </span>
+
+                </div>
+
+
+                <!-- Total Quantity -->
+                <div class="summary-row">
+
+                    <span>Total Quantity</span>
+
+                    <span>
+                        {{ total_quantity }}
+                    </span>
+
+                </div>
+
+
+                <!-- Delivery -->
+                <div class="summary-row">
+
+                    <span>Delivery</span>
+
+                    <span>
+                        Calculated at checkout
+                    </span>
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- Grand Total -->
+                <div class="grand-total-section">
+
+                    <span>Grand Total</span>
+
+                    <h2 class="grand-total">
+                        ₹{{ total|floatformat:2 }}
+                    </h2>
+
+                </div>
+
+
+                <p class="summary-note">
+                    Your total amount is calculated based on
+                    the selected products and quantities.
+                </p>
+
+
+                <!-- Checkout -->
+                 <form action="{% url 'checkouturls' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="" class="checkout" value="Proceed to Checkout →">
+       
+           
+                </form>
+
+
+                <!-- Continue Shopping -->
+                <a href="{% url 'homeurls' %}" class="continue-btn">
+                    ← Continue Shopping
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- Empty Cart -->
+        <div class="empty-cart">
+
+            <div class="empty-icon">🛒</div>
+
+            <h2>Your Cart is Empty!</h2>
+
+            <p>
+                You haven't added any vegetables to your cart yet.
+            </p>
+
+            <a href="{% url 'homeurls' %}" class="add-items-btn">
+                Start Shopping →
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>🥬 Vegetable Menu</h3>
+
+        <p>Eat Fresh... Live Healthy...</p>
+
+        <p>© 2026 Vegetable Menu. All Rights Reserved.</p>
+
+    </footer>
+
+</body>
+</html>
+{% endblock %}

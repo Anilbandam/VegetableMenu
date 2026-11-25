@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+ {% block css %}
+   
+{% load static %}
+
+    <title>Vegetable Menu | Fresh & Healthy</title>
+
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+ {% endblock %}
+{% block main %}
+
+<body>
+
+<nav class="navbar">
+    <h2>🥬 Vegetable Menu</h2>
+    <div class="nav-links">
+        <a href="{% url 'homeurls' %}">Home</a>
+        <a href="{% url 'displaycarturls' %}">Cart</a>
+        <a href="{% url 'ordersurls' %}">Orders</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </div>
+</nav>
+
+<section class="about-hero">
+    <h1>About Vegetable Menu</h1>
+    <p>Fresh Vegetables, Healthy Life!</p>
+</section>
+
+<section class="about-container">
+
+    <div class="about-content">
+        <h2>Who We Are</h2>
+        <p>
+            Welcome to Vegetable Menu! We are an online vegetable
+            shopping platform designed to make buying fresh vegetables
+            simple, convenient and affordable.
+        </p>
+
+        <p>
+            Our goal is to provide customers with an easy way to
+            explore vegetables, check prices, add products to their
+            shopping cart and place orders online.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to make fresh vegetable shopping easier
+            through technology while promoting healthy food habits.
+        </p>
+
+        <h2>Why Choose Us?</h2>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🥦 Fresh Products</h3>
+                <p>Explore a variety of vegetables.</p>
+            </div>
+
+            <div class="feature">
+                <h3>💰 Affordable Prices</h3>
+                <p>Shop with clear and reasonable prices.</p>
+            </div>
+
+            <div class="feature">
+                <h3>🛒 Easy Shopping</h3>
+                <p>Add products to your cart easily.</p>
+            </div>
+
+            <div class="feature">
+                <h3>📦 Easy Ordering</h3>
+                <p>Place and manage your orders online.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Vegetable Menu. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
+{% endblock %}

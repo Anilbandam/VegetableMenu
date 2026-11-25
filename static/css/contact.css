@@ -1,0 +1,144 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5fff5;
+    color: #333;
+}
+
+.navbar {
+    background: #218838;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #d4ffd4;
+}
+
+.contact-hero {
+    background: linear-gradient(120deg, #218838, #7ac943);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.contact-hero h1 {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: 45px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 35px;
+}
+
+.contact-info,
+.contact-form {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px #00000015;
+}
+
+.contact-info h2,
+.contact-form h2 {
+    color: #218838;
+    margin-bottom: 20px;
+}
+
+.contact-info > p {
+    line-height: 1.7;
+}
+
+.info-item {
+    margin-top: 25px;
+}
+
+.info-item h3 {
+    color: #218838;
+    margin-bottom: 8px;
+}
+
+.info-item p {
+    color: #555;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 17px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #28a745;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    width: 100%;
+    background: #218838;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background: #155724;
+}
+
+footer {
+    background: #155724;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media(max-width: 750px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links a {
+        display: inline-block;
+        margin: 7px;
+    }
+}
